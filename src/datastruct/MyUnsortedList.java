@@ -62,9 +62,6 @@ public class MyUnsortedList<E> implements UnsortedList<E> {
         if (pos < 0 || pos > size) {
             throw new IndexOutOfBoundsException();
         }
-        if (elem == null ) {
-        	throw new IllegalArgumentException();
-        }
         if (pos == 0) {
             prepend(elem);
             return;
@@ -81,7 +78,7 @@ public class MyUnsortedList<E> implements UnsortedList<E> {
         prevLink.next = inserted;
         inserted.next = nextLink;
     }
-  
+
     @Override
     public E pop() {
         if (isEmpty()) {
@@ -115,12 +112,12 @@ public class MyUnsortedList<E> implements UnsortedList<E> {
             throw new EmptyListException();
         }
         Link<E> prevLink = head;
-        for (int i = 1; i < pos; i++) {  
+        for (int i = 1; i < pos; i++) {
             prevLink = prevLink.next;
         }
         Link<E> toRemove = prevLink.next;
         prevLink.next = toRemove.next;
-        toRemove.next = null; 
+        toRemove.next = null;
         size--;
         return toRemove.element;
     }
@@ -140,7 +137,7 @@ public class MyUnsortedList<E> implements UnsortedList<E> {
         Link<E> thisLink = this.head;
         Link<E> thatLink = that.head;
         while (thisLink != null) {
-            if (thatLink == null || !thisLink.element.equals(thatLink.element)) {
+            if (thatLink == null || !java.util.Objects.equals(thisLink.element, thatLink.element)) {
                 return false;
             }
             thisLink = thisLink.next;
